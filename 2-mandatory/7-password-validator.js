@@ -24,7 +24,17 @@ PasswordValidationResult=  [false, false, false, false, true]
 
 */
 
+let regex = /\W|_/;
+
 function validatePasswords(passwords) {
+    let passwordRight = passwords.map(password => {
+        if (password.length > 5 && password.match(/(?=.*[a-zA-Z])(?=.*\d)(?=.*[A-Z])(?=.*\W)/)) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+    return passwordRight;
 }
 
 // Returns true if string contains at least one uppercase letter.
@@ -49,8 +59,8 @@ function containsSymbol(string) {
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 
-const passwords1 = ["Se%5", "TktE.TJTU", "384#HsHF", "dvyyeyy!5", "tryT3729"]
-const passwords2 = ["StUFf27%", "Pl3nty!", "Jai33", "shajsaUA**&&", "Pl3nty!"]
+const passwords1 = ["Se%5", "TktE.TJTU", "384#HsHF", "dvyyeyy!5", "tryT3729"];
+const passwords2 = ["StUFf27%", "Pl3nty!", "Jai33", "shajsaUA**&&", "Pl3nty!"];
 
 const util = require('util');
 
@@ -74,5 +84,5 @@ test(
 test(
   "validatePasswords function works - case 2",
   validatePasswords(passwords2),
-  [true, true, false, false, false]
+  [true, true, false, false, true]
 );

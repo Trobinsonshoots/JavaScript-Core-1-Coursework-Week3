@@ -7,8 +7,15 @@
   - Returns an array containing only the names of the who have attended AT LEAST 8 classes
 */
 
-function eligibleStudents() {
+function eligibleStudents(attendances) {
+  let moreThan8 = attendances.map(function (name) {
+    if (name.length === 2 && name[1] >= 8) {
+      return name[0].substring(/a-z/);
+    };
+  });
+  console.log(moreThan8);
 
+  return moreThan8.filter(name => typeof name === 'string' );
 }
 
 /* ======= TESTS - DO NOT MODIFY ===== */

@@ -11,7 +11,13 @@
     Some string methods that might help you here are .replace() and .substring(). 
 */
 
-function safeLevels() {}
+
+
+function safeLevels(testOxygen) {
+  let toNumber = testOxygen.map(parseFloat).findIndex(num => num > 19.5 && num < 23.5 );
+  return testOxygen[toNumber];
+
+}
 
 /* ======= TESTS - DO NOT MODIFY ===== */
 

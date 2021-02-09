@@ -20,8 +20,8 @@
 function checkCodeIsThere(stringText) {
   let magicWord = "code";
   //edit code below
-  if (stringText) {
-    return stringText;
+  if (stringText.includes(magicWord)) {
+    return stringText.indexOf(magicWord);
   } else {
     return "Not found";
   }
@@ -64,7 +64,11 @@ function checkCodeIsThere(stringText) {
   
   Hint: Use the corresponding array method to split the array.
 */
-function getTransportModes() {}
+
+function getTransportModes(modes) {
+  let transportModes = modes.slice(1,3)
+  return transportModes;
+}
 
 /*
   Implement the function isAccessibleByTransportMode that
@@ -81,7 +85,11 @@ function getTransportModes() {}
     
   Hint: Use the corresponding array method to decide if an element is member of an array.
 */
-function isAccessibleByTransportMode() {}
+
+function isAccessibleByTransportMode(arr, str) {
+  let verifiedTransportMode = arr.includes(str);
+  return verifiedTransportMode;
+}
 
 /*
   Implement the function getLocationName that
@@ -92,13 +100,19 @@ function isAccessibleByTransportMode() {}
    - Returns the name of the location
       e.g: "Tower Bridge"
 */
-function getLocationName() {}
+
+function getLocationName(arr) {
+  let location = arr.slice(0,1);
+  let locationName = location[0].substring(/a-z/);
+  return locationName;
+}
+
+console.log(getLocationName((["Angel", "tube", "bus"]), "Angel"));
 
 /*
  We arrived at the final method. it won't take long if you use the previously implemented functions wisely.
 
  Finish up the implementation of the function journeyPlanner that
-
   - Accepts two parameters:
     1) An array with a list of locations' and their transports
        e.g:
@@ -106,22 +120,25 @@ function getLocationName() {}
          ["Angel", "tube", "bus"],
          ["London Bridge", "tube", "river boat"]
        ]
-
     2) A string containing a transport mode
        e.g: "bus"
-
   - Returns an array of where I can go if I only want to use a specific mode of transport.
-
   NOTE: only the location names should be returned, not the name of transports.
-  
   HINTS:
    - Use the function you implemented above.
    - Use array method to remove locations that is not accessible by the given transportMode.
    - Use array method to manipulate its elements.
-   
   Advanced challange: try to use arrow function when invoking an array method.
 */
 function journeyPlanner(locations, transportMode) {
+
+  let specificTransport = locations.map(name => {
+    if (name.includes(transportMode)){
+      return name[0];
+    }
+  });
+    return specificTransport.filter(name => typeof name === 'string' );
+
   // Implement the function body
 }
 
